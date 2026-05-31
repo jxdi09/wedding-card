@@ -3,141 +3,159 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JM Wedding Invitation</title>
-    <meta name="description" content="ร่วมแสดงความยินดีและเขียนคำอวยพรงานแต่งงาน JM">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ร่วมแสดงความยินดีงานแต่ง</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Prompt:wght@300;400;500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="app-container">
-        <!-- Background Image -->
-        <div class="background-image"></div>
 
-        <!-- Main Content Glassmorphism Box -->
-        <div class="glass-card">
+    <!-- Background -->
+    <div class="bg-container">
+        <div class="bg-overlay"></div>
+    </div>
 
-            <!-- Header Section -->
+    <main class="wedding-wrapper">
+        <div class="wedding-border">
+
+            <!-- ═══ 1. Header ═══ -->
             <header class="header-section">
-                <img src="assets/img/logo.png" alt="JM Logo" class="initials-img">
-                <p class="wedding-date">19 . 12 . 26</p>
-                <p class="greeting">ขอเชิญร่วมแสดงความยินดีและส่งคำอวยพรแด่คู่บ่าวสาว</p>
+                <h1 class="monogram">JM</h1>
+                <p class="date">19 . 12 . 26</p>
+                <p class="subtitle">มอบของขวัญและร่วมอวยพรบ่าวสาว</p>
             </header>
 
-            <form id="weddingForm" class="wedding-form">
+            <form id="wedding-form">
 
-                <!-- Donation / Gift Section -->
-                <section class="gift-section">
-                    <div class="qr-container">
-                        <!-- QR Code -->
-                        <img src="assets/img/qr.jpg" alt="QR Code" class="qr-code">
+                <!-- ═══ 2. QR Code + Upload Slip (Priority 1) ═══ -->
+                <section class="envelope-section">
+                    <div class="section-label">ใส่ซอง 💖</div>
+                    <div class="qr-upload-row">
+                        <div class="qr-box">
+                            <img src="img/qr.jpg" alt="QR Code" class="qr-code">
+                        </div>
+                        <div class="upload-box">
+                            <p class="upload-hint">สแกนเพื่อมอบของขวัญ<br>แล้วกดแนบสลิปด้านล่าง</p>
+                            <button type="button" id="btn-open-slip-modal" class="pill-btn pink-btn">+
+                                แนบสลิปของท่าน</button>
+                        </div>
+                    </div>
+                    <div id="slip-status" class="slip-status hidden">✅ แนบสลิปเรียบร้อยแล้ว</div>
+                </section>
+
+                <!-- ═══ 3. Guest Info ═══ -->
+                <section class="form-section">
+                    <div class="form-row">
+                        <label for="guest-name">ชื่อของท่าน</label>
+                        <input type="text" id="guest-name" name="guest-name" class="pill-input"
+                            placeholder="ชื่อ - นามสกุล" required>
                     </div>
 
-                    <div class="gift-inputs">
-                        <button type="button" class="btn-attach-slip" id="attachSlipBtn" blank="upload.html">
-                            + แนบสลิปของท่าน
-                        </button>
-                        <input type="file" id="slipInput" class="hidden-input" accept="image/*">
+                    <div class="form-row">
+                        <p class="question-label">ท่านเป็นแขกฝ่ายไหน?</p>
+                        <div class="radio-row">
+                            <label class="custom-radio">
+                                <input type="radio" name="relation" value="เจ้าสาว" required>
+                                <span class="radio-mark"></span>
+                                แขกฝ่ายเจ้าสาว
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="relation" value="เจ้าบ่าว">
+                                <span class="radio-mark"></span>
+                                แขกฝ่ายเจ้าบ่าว
+                            </label>
+                        </div>
+                    </div>
 
-                        <div class="input-group">
-                            <label for="amount">จำนวนเงิน (บาท)</label>
-                            <input type="number" id="amount" placeholder="ระบุจำนวนเงิน" required>
+                    <div class="form-row">
+                        <p class="question-label">สะดวกมาร่วมงานไหม?</p>
+                        <div class="radio-row">
+                            <label class="custom-radio">
+                                <input type="radio" name="attending" value="สะดวกมาร่วมงาน" required>
+                                <span class="radio-mark"></span>
+                                สะดวกมาร่วมงาน
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" name="attending" value="ไม่สะดวก">
+                                <span class="radio-mark"></span>
+                                ไม่สะดวก (ฝากซอง)
+                            </label>
                         </div>
                     </div>
                 </section>
 
-                <!-- Guest Info Section -->
-                <section class="guest-info-section">
-                    <div class="input-group row-group">
-                        <label for="guestName">ชื่อ - นามสกุล</label>
-                        <input type="text" id="guestName" placeholder="กรุณาระบุชื่อของท่าน" required>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>ท่านเป็นแขกของ</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="side" value="ฝ่ายเจ้าบ่าว">
-                                <span class="custom-radio"></span>
-                                ฝ่ายเจ้าบ่าว
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="side" value="ฝ่ายเจ้าสาว">
-                                <span class="custom-radio"></span>
-                                ฝ่ายเจ้าสาว
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>ความสะดวกในการเข้าร่วมงาน</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="attendance" value="ยินดีมาร่วมงาน">
-                                <span class="custom-radio"></span>
-                                ยินดีมาร่วมงาน
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="attendance" value="ไม่สามารถมาร่วมงานได้">
-                                <span class="custom-radio"></span>
-                                ไม่สามารถมาร่วมงานได้
-                            </label>
-                        </div>
-                    </div>
-                    
+                <!-- ═══ 4. Map ═══ -->
+                <section class="map-section">
+                    <a href="https://www.google.com/maps/place/Nong+Ruea+District,+Khon+Kaen" target="_blank"
+                        class="map-link">
+                        📍 แผนที่จัดงาน (อ.หนองเรือ)
+                    </a>
                 </section>
 
-                <!-- Gallery Section -->
-                <section class="gallery-section">
-                    <h2 class="section-title pink-badge">Wedding Gallery</h2>
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/img/set1/1.jpg" alt="Gallery 1">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/img/set1/2.jpg" alt="Gallery 2">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/img/set1/3.jpg" alt="Gallery 3">
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Blessing Section -->
+                <!-- ═══ 5. Blessing ═══ -->
                 <section class="blessing-section">
-                    <h2 class="section-title pink-badge">ข้อความอวยพร</h2>
-                    <textarea id="blessingMessage" rows="4" placeholder="พิมพ์คำอวยพรแด่คู่บ่าวสาว..."
-                        required></textarea>
+                    <div class="section-label">เขียนคำอวยพร</div>
+                    <textarea id="message" name="message" class="blessing-textarea"
+                        placeholder="พิมพ์ข้อความอวยพรถึงบ่าวสาว..." required></textarea>
                 </section>
 
-                <!-- Submit Section -->
+                <!-- ═══ 6. Submit ═══ -->
                 <div class="submit-section">
-                    <button type="submit" class="btn-submit">
-                        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                                fill="currentColor" />
-                        </svg>
-                        ส่งคำอวยพร
+                    <button type="submit" id="btn-submit" class="heart-btn">
+                        <span>กดส่ง</span>
                     </button>
                 </div>
+
             </form>
+
+            <!-- ═══ 7. Wedding Gallery (Bonus at bottom) ═══ -->
+            <section class="gallery-section" style="margin-top: 20px;">
+                <div class="section-label">Wedding Gallery</div>
+                <div class="gallery-grid">
+                    <img src="img/1.jpg" alt="Gallery 1">
+                    <img src="img/2.jpg" alt="Gallery 2">
+                    <img src="img/3.jpg" alt="Gallery 3">
+                </div>
+            </section>
+
+            <div class="footer-logo">A & C</div>
+        </div>
+    </main>
+
+    <!-- Slip Upload Modal -->
+    <div id="slip-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-slip-modal">&times;</span>
+            <h2>แนบสลิปโอนเงิน</h2>
+            <div class="upload-area" id="upload-area">
+                <input type="file" id="slip-input" accept="image/*" hidden>
+                <div class="upload-placeholder" id="upload-placeholder">
+                    <span class="upload-icon">📤</span>
+                    <span>คลิกเพื่อเลือกรูปภาพสลิป</span>
+                </div>
+                <img id="slip-preview" class="slip-preview hidden" alt="Slip Preview">
+            </div>
+            <button type="button" id="btn-confirm-slip" class="pill-btn pink-btn" disabled>ยืนยันสลิป</button>
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-icon">🌸</div>
-            <h2>ขอขอบพระคุณ</h2>
-            <p>เราทั้งสองได้รับคำอวยพรและของขวัญจากท่านเรียบร้อยแล้ว ขอบพระคุณที่ร่วมยินดีกับเราค่ะ/ครับ</p>
-            <button class="btn-close-modal">ปิดหน้าต่าง</button>
+    <!-- Thank You Modal -->
+    <div id="thank-you-modal" class="modal">
+        <div class="modal-content thank-you-content">
+            <div class="thank-icon">🌸</div>
+            <h2>ขอบคุณจากใจ</h2>
+            <p class="thank-you-text">ขอบคุณ คุณ <span id="thank-you-name" class="highlight-name">...</span> มากๆ
+                นะคะ/ครับ</p>
+            <p class="thank-you-sub">ที่มาร่วมแสดงความยินดีและเป็นส่วนหนึ่ง<br>ในวันสำคัญของเราสองคน</p>
+            <button type="button" id="btn-close-thank-you" class="pill-btn pink-btn">ปิดหน้าต่าง</button>
         </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
     </div>
 
     <script src="script.js"></script>
